@@ -28,3 +28,14 @@ rails credentials:edit
 
 ####Running Tests
 At the moment only cucumber integration tests are employed. Run with `cucumber`. Requires chrome and chromedriver to be setup.
+
+To run in parallel and inside vnc use `geordi`:
+```
+# create test databases
+rails parallel:create
+# setup vnc for geordi
+geordi vnc --setup
+
+# to run tests
+geordi test
+```

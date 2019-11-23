@@ -39,6 +39,7 @@ group :development, :test do
   gem 'capistrano-rbenv'
   gem 'capistrano-passenger'
   gem 'capistrano-yarn'
+  gem 'parallel_tests'
 end
 
 group :development do
