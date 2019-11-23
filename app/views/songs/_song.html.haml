@@ -1,0 +1,10 @@
+.song
+  = image_tag song.cover_image&.thumb.url || song.cover_url, class: 'song--cover-image'
+  .song--title= song.title
+  .song--actions
+    - if block_given?
+      = yield
+  - if song.is_a? Song::Spotify
+    .song--description= "#{humanize_seconds(song.duration / 1000)} - #{song.artist} - #{song.album}"
+  - elsif song.is_a? Song::Youtube
+    .song--description= "#{humanize_seconds(song.duration / 1000)} - Youtube - #{song.artist}"

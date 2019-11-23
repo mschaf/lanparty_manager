@@ -1,0 +1,27 @@
+= title_bar 'Games' do
+  - link_to 'Add Game', new_game_path, class: 'button -secondary', 'up-dash': '' if current_power.creatable_games?
+
+.markdown.mb-30
+  - markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(filter_html: true, hard_warp: true), autolink: true, tables: true)
+  = markdown.render(Setting.get_or_initialize.games_top_text).html_safe
+
+- @games.each do |game|
+  .game
+    - if game.cover_image?
+      = image_tag game.cover_image.thumb.url, class: 'game--cover-image'
+    - else
+      .game--cover-image
+    .game--title= game.name
+    .game--actions
+      - action_links = []
+      - action_links << link_to('edit', edit_game_path(game), 'up-dash': '') if current_power.updatable_game?(game)
+      - action_links << link_to('delete', game, method: :delete, 'up-follow': '', 'up-confirm': "Really delete #{game.name}?") if current_power.destroyable_game?(game)
+      - if action_links.any?
+        = action_links.join(' - ').html_safe
+
+    .game--description.markdown.extendable
+      - markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML.new(filter_html: true, hard_warp: true), autolink: true, tables: true)
+      = markdown.render(game.description).html_safe
+
+      .extendable--extend
+        = fa_icon "angle-double-down"

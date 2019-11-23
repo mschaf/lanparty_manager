@@ -1,0 +1,62 @@
+@import ../definitions
+
+.layout
+  position: absolute
+  height: 100%
+  width: 100%
+  left: 0
+  top: 0
+
+.layout--top
+  position: fixed
+  z-index: 1
+  top: 0
+  left: 0
+  height: $header-height
+  width: 100%
+  display: flex
+  justify-content: center
+
+.layout--side
+  position: fixed
+  top: 0
+  left: 0
+  width: $sidebar-width
+  height: 100%
+  padding-top: $header-height
+
+.layout--main
+  height: 100%
+  display: flex
+  align-items: center
+  flex-direction: column
+  padding-top: $header-height + 20px
+
+.layout--content
+  max-width: 1200px
+  width: 95%
+  background-color: $header-background
+  border-radius: 30px
+  box-shadow: 0 0 30px 0 rgba(0,0,0,0.3)
+  padding: 30px
+
+  &.-signed-out
+    width: 500px
+    margin-top: 150px
+    font-size: 18px
+
+.layout--bottom
+  width: 100%
+  display: flex
+  margin-top: auto
+  padding-top: 50px
+  justify-content: center
+
+.layout--flashes
+  right: 10px
+  top: 10px
+  position: fixed
+  z-index: 3
+
+
+

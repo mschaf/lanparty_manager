@@ -1,0 +1,21 @@
+= form_for @user, html: { 'up-target': '' } do |f|
+
+  = title_bar 'Edit User' do
+    - html = f.submit'Save User', class: 'button'
+    - html << link_to('cancel', users_path, class: 'button -secondary', 'up-dash': '.layout--content')
+
+
+  .form--group
+    = f.label :display_name
+    = f.text_field :display_name
+    = f.error_messages_for :display_name
+
+  .form--group
+    = f.label :admin do
+      = f.check_box :admin
+      admin?
+
+  .form--group
+    = f.label :locked do
+      = f.check_box :locked
+      locked?

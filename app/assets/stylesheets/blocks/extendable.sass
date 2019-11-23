@@ -1,0 +1,31 @@
+@import ../definitions
+
+$animation_duration: 0.3s
+
+.extendable
+  position: relative
+  overflow: hidden
+  padding-bottom: 30px
+  transition: max-height $animation_duration ease-in-out
+
+
+.extendable--extend
+  position: absolute
+  width: 100%
+  height: 30px
+  bottom: 0
+  display: none
+  cursor: pointer
+  background: rgba(255, 0, 0, 0.4)
+  background: linear-gradient(transparent, $header-background)
+  transition: background $animation_duration ease-in-out
+  align-items: center
+  justify-content: center
+
+
+  &.-visible
+    display: flex
+
+  & > i
+    font-size: 20px
+    transition: transform $animation_duration ease-in-out

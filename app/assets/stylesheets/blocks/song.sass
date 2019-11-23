@@ -1,0 +1,34 @@
+.song
+  display: grid
+  grid-template-columns: 60px 1fr auto
+  grid-auto-rows: 30px 30px
+  grid-template-areas: "cover title actions"  "cover description actions"
+  margin: 10px 0
+
+.song--cover-image
+  grid-area: cover
+  object-fit: contain
+  width: 60px
+  height: 60px
+
+.song--title
+  grid-area: title
+  font-weight: bold
+  margin: 7px
+  text-overflow: ellipsis
+  white-space: nowrap
+  overflow: hidden
+
+.song--actions
+  grid-area: actions
+  display: flex
+  align-items: center
+
+.song--description
+  grid-area: description
+  margin: 7px
+  text-overflow: ellipsis
+  white-space: nowrap
+  overflow: hidden
+
+

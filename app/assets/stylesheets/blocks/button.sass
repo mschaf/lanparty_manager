@@ -1,0 +1,21 @@
+@import definitions
+
+.button
+  color: $dark-text-color
+  border-radius: 18px
+  box-shadow: 0 0 5px 0 gray
+  border: none
+  background-color: $primary-color
+  font-size: inherit
+  padding: 4px 8px
+
+  &:hover
+    background-color: darken($primary-color, 5%)
+    cursor: pointer
+    color: $dark-text-color
+
+  &.-secondary
+    background-color: $secondary-color
+
+    &:hover
+      background-color: darken($secondary-color, 5%)

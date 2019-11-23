@@ -1,0 +1,34 @@
+= form_for @setting, url: {action: 'update', controller: 'settings'}, html: { 'up-target': '' } do |f|
+
+  = title_bar 'Edit Settings' do
+    - f.submit 'Save Settings', class: 'button'
+
+  .form--group
+    = f.label :lock_sign_up do
+      = f.check_box :lock_sign_up
+      Lock sign up
+
+  .form--group
+    = f.label :lock_queue do
+      = f.check_box :lock_queue
+      Lock song queue
+
+  .form--group
+    = f.label :max_songs_queued_at_once
+    = f.number_field :max_songs_queued_at_once
+    = f.error_messages_for :max_songs_queued_at_once
+
+  .form--group
+    = f.label :games_top_text
+    = f.text_area :games_top_text
+    = f.error_messages_for :games_top_text
+
+  .form--group
+    = f.label :background_playlist_user
+    = f.text_field :background_playlist_user
+    = f.error_messages_for :background_playlist_user
+
+  .form--group
+    = f.label :background_playlist
+    = f.text_field :background_playlist
+    = f.error_messages_for :background_playlist

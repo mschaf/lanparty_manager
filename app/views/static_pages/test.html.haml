@@ -1,0 +1,97 @@
+%h1 Title H1
+%h2 Title H2
+%h3 Title H3
+
+.container
+
+  .container--item.flex-1
+    this is a div
+
+    %br
+    %br
+
+    %p
+      paragraph
+
+    %br
+    %br
+
+    %ul
+      %li
+        Item 1
+      %li
+        Item 2
+      %li
+        Item 3
+
+    %br
+    %br
+
+  .container--item.flex-1
+    %form.form
+
+      .form--group
+        %label Input 1
+        %input
+
+      .form--group
+        %label Input 1
+        %input
+
+      .form--group
+        %label Select
+        %select
+          %option Option 1
+          %option Option 2
+          %option Option 3
+
+      .form--group
+        %label Input 1
+        %textarea
+
+      .form--group
+        %label
+          Checkbox
+          %input{type: 'checkbox'}
+
+      %input{type: 'submit', class: 'button'}
+
+%br
+%br
+
+%a{href: '#'} Link
+
+%br
+%br
+
+  %a{href: '#', class: 'button'} Link
+  %a{href: '#', class: 'button -secondary'} Link
+
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+%br
+-#%h1 Lan Party Manager
+-#
+-#%form.form
+-#
+-#  .form--group
+-#    %label Username
+-#    %input
+-#
+-#  .form--group
+-#    %label Password
+-#    %input
+-#
+-#  .form--group
+-#    %label
+-#      Stay logged in
+-#      %input{type: 'checkbox'}
+-#
+-#  %br
+-#
+-#  %input{type: 'submit', class: 'button', value: 'Sign In'}

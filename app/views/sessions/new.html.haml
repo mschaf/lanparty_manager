@@ -1,0 +1,21 @@
+%h1 Lan Party Manager - Sign In
+= form_for @sign_in, url: {action: 'create', controller: 'sessions'}, html: { 'up-target': '' } do |f|
+
+  .form--group
+    = f.label :username
+    = f.text_field :username
+    = f.error_messages_for :username
+
+
+  .form--group.mb-30
+    = f.label :password
+    = f.password_field :password
+    = f.error_messages_for :password
+
+
+  = f.submit "Sign In", class: 'button'
+
+- unless Setting.get_or_initialize.lock_sign_up
+  .mt-20
+    No Account?
+    = link_to 'Sign Up', new_user_path, class: 'button -secondary', 'up-dash': '.layout--content'

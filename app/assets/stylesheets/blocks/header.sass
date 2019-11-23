@@ -1,0 +1,43 @@
+@import ../definitions
+
+.header
+  background-color: $header-background
+  //border-bottom: black 2px solid
+  height: $header-height
+  border-bottom-left-radius: 30px
+  border-bottom-right-radius: 30px
+  box-shadow: 0 0 30px 0px rgba(0,0,0,0.3)
+  display: flex
+  justify-content: space-around
+  padding: 0 20px 0 20px
+
+.header--item
+  padding-top: ($header-height - 30px) / 2
+  padding-bottom: ($header-height - 30px) / 2
+
+
+.header--link
+  height: 30px
+  color: $dark-text-color
+  padding: 6px 10px
+  margin: 0 30px
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.3)
+  border-radius: 15px
+  background: $primary-color
+  font-size: 18px
+  display: block
+
+  &.-secondary
+    background: $secondary-color
+
+.header--user
+  border-left: lightgray solid 1px
+  display: flex
+  flex-direction: column
+  padding: 3px 20px 3px 20px
+
+.header--user-name
+  padding: 3px
+  font-size: 18px
+
+

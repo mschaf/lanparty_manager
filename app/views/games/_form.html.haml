@@ -1,0 +1,27 @@
+= form_for @game, html: { 'up-target': '' } do |f|
+
+  = title_bar @game.persisted? ? "Edit #{@game.name}" : 'Create Game' do
+    - html = f.submit @game.persisted? ? 'Save Game' : 'Create Game', class: 'button'
+    - html << link_to('cancel', games_path, class: 'button -secondary', 'up-dash': '.layout--content')
+
+
+  .form--group
+    = f.label :name
+    = f.text_field :name
+    = f.error_messages_for :name
+
+  .form--group
+    = f.label :description
+    = f.text_area :description
+    = f.error_messages_for :description
+
+  .form--group
+    = f.label :cover_image
+    .image-upload
+      = image_tag @game.cover_image.thumb.url, class: 'image-upload--image' if @game.cover_image?
+      .image-upload--fields
+        = f.error_messages_for :cover_image
+        = f.file_field :cover_image, class: 'mb-10', spec_label: true
+        = f.label :remove_cover_image do
+          = f.check_box :remove_cover_image
+          Remove cover image

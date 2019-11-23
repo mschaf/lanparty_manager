@@ -1,0 +1,25 @@
+%h1 Lan Party Manager - Sign Up
+= form_for @user, html: { 'up-target': '' } do |f|
+
+  .form--group.mb-30
+    = f.label :name, 'Username'
+    = f.text_field :name
+    = f.error_messages_for :name
+
+
+  .form--group
+    = f.label :password
+    = f.password_field :password
+    = f.error_messages_for :password
+
+  .form--group.mb-30
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+    = f.error_messages_for :password_confirmation
+
+
+  = f.submit "Sign Up", class: 'button'
+
+.mt-20
+  Already signed up?
+  = link_to 'Sign In', signin_path, class: 'button -secondary', 'up-dash': '.layout--content'

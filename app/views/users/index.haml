@@ -1,0 +1,37 @@
+= title_bar 'Users'
+
+- @users.each do |user|
+  .user.divider-line
+    .flex-container
+      .user--name
+        %h3= "#{user.display_name} (#{user.name})"
+      .user--actions.ml-auto
+        - action_links = []
+        - action_links << link_to('edit', edit_user_path(user), 'up-dash': '') if current_power.updatable_user?(user)
+        - action_links << link_to('delete', user, method: :delete, 'up-follow': '', 'up-confirm': "Really delete #{user.name}?") if current_power.destroyable_user?(user)
+        - if action_links.any?
+          = action_links.join(' - ').html_safe
+    .user--descriptions.extendable.max-height-30
+      %table
+        %tr
+          %td.pr-20 admin?
+          %td= user.admin?
+        %tr
+          %td.pr-20 locked?
+          %td= user.locked?
+        %tr
+          %td.pr-20 last sign in at
+          %td= user.last_sign_in_at&.localtime
+        %tr
+          %td.pr-20 last sign in ip
+          %td= user.last_sign_in_ip
+        %tr
+          %td.pr-20 sign up at
+          %td= user.created_at&.localtime
+        %tr
+          %td.pr-20 sign up ip
+          %td= user.sign_up_ip
+
+      .extendable--extend
+        = fa_icon "angle-double-down"
+

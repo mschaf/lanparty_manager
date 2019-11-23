@@ -1,0 +1,54 @@
+= title_bar 'Music'
+
+.music
+  .music--side
+    .music--playing
+      .music--title
+        Currently Playing
+      - playing_song = @songs.where(state: Song::STATE_PLAYING).first
+      - if playing_song.present?
+        = render 'song', song: playing_song
+        .music--playback
+          - playback = playing_song.playback
+          - if playback.present?
+            - if current_power.controllable_playback?
+              - if playback.playing?
+                = link_to fa_icon('pause'), pause_playback_path, method: :post, 'up-target': '.music--playback'
+              - elsif playback.paused?
+                = link_to fa_icon('play'), resume_playback_path, method: :post, 'up-target': '.music--playback'
+              - if playback.playing? || playback.paused?
+                = link_to fa_icon('step-forward'), skip_playback_path, method: :post, 'up-target': '.music--playback'
+            - else
+              - if playback.paused?
+                = fa_icon('pause')
+            = humanize_seconds(playback.current_time/1000)
+            = '/'
+            = humanize_seconds(playing_song.duration/1000)
+    .music--queue
+      .music--title
+        Queue
+        - unless current_power.creatable_songs?
+          (sign in to add music to the queue)
+      - @songs.where(state: Song::STATE_QUEUE).each do |song|
+        = render 'song', song: song do
+          = link_to 'remove', song_path(song), method: :delete, class: 'button', 'up-target': '.layout--flashes, .music--queue' if current_power.destroyable_song?(song)
+  - if current_power.creatable_songs?
+    .music--search.music--side
+      .music--title
+        Music Search
+      = form_tag search_songs_path, method: :get, 'up-autosubmit': '', 'up-delay': 500, 'up-target': '.music--search-songs', 'up-restore-scroll': true, 'up-cache': false, autocomplete: 'off' do
+        .form--group
+          = text_field_tag :query, @query, spec_label: true
+      .music--search-songs
+        - if @search_songs_spotify&.any?
+          %h3.mt-20 Spotify:
+          - (@search_songs_spotify || []).each do |song|
+            = render 'song', song: song do
+              = link_to 'add', songs_path(type: 'spotify', song: {song_id: song.song_id, }), method: :post, 'up-target': '.layout--flashes, .music--queue', class: 'button'
+        - if @search_songs_youtube&.any?
+          %h3.mt-20 Youtube:
+          - (@search_songs_youtube || []).each do |song|
+            = render 'song', song: song do
+              = link_to 'add', songs_path(type: 'youtube', song: {song_id: song.song_id, }), method: :post, 'up-target': '.layout--flashes, .music--queue', class: 'button'
+        - unless !((@query&.length || 0) >= 3) || @search_songs_spotify&.any? || @search_songs_youtube&.any?
+          %h3 no results

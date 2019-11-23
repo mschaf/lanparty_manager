@@ -1,0 +1,30 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title LanpartyManagement
+    = csrf_meta_tags
+    = csp_meta_tag
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+  %body
+    .layout
+      .layout--top
+        .header
+          .header--item= link_to 'Games', games_path, class: 'header--link', 'up-dash': '.layout--content'
+          .header--item= link_to 'Music', songs_path, class: 'header--link', 'up-dash': '.layout--content'
+          .header--item= link_to 'Users', users_path, class: 'header--link', 'up-dash': '.layout--content' if current_power.users?
+          .header--item= link_to 'Settings', edit_settings_path, class: 'header--link', 'up-dash': '.layout--content' if current_power.settings?
+
+          - if signed_in?
+            .header--user
+              .header--user-name
+                = current_user.display_name
+              = link_to 'Sign out', signin_path, method: :delete, class: 'button -secondary', 'up-dash': ''
+          - else
+            .header--item= link_to 'Sign in', signin_path, class: 'header--link -secondary', 'up-dash': ''
+
+      .layout--flashes= render 'layouts/flashes'
+      .layout--main
+        .layout--content= yield
+        .layout--bottom= render 'layouts/footer'
