@@ -8,7 +8,7 @@ You can also manage a list of games, suppling information of how to install game
 
 ### Development Setup
 
-####Setup Environment
+#### Setup Environment
 ```
 bundle install 
 
@@ -26,7 +26,7 @@ rails credentials:edit
 
 ```
 
-####Running Tests
+#### Running Tests
 At the moment only cucumber integration tests are employed. Run with `cucumber`. Requires chrome and chromedriver to be setup.
 
 To run in parallel and inside vnc use `geordi`:
